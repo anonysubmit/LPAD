@@ -1,0 +1,71 @@
+/* Enclave.edl - Top EDL file. */
+
+enclave {
+
+  include "user_types.h" /* buffer_t */
+
+    /* Import ECALL/OCALL from sub-directory EDLs.
+     *  [from]: specifies the location of EDL file. 
+     *  [import]: specifies the functions to import, 
+     *  [*]: implies to import all functions.
+     */
+
+    from "Edger8rSyntax/Functions.edl" import *;
+
+  from "Libc.edl" import *;
+    from "sgx_tstdc.edl" import sgx_thread_wait_untrusted_event_ocall, sgx_thread_set_untrusted_event_ocall, sgx_thread_setwait_untrusted_events_ocall, sgx_thread_set_multiple_untrusted_events_ocall;
+
+
+  /* 
+   * ocall_bar - invokes OCALL to display string buffer inside the enclave.
+   *  [in]: copy the string buffer to App outside.
+   *  [string]: specifies 'str' is a NULL terminated buffer.
+   */
+  untrusted {
+    void ocall_bar([in, string] const  char *str);
+/*
+    void ocall_reload([out] int key_sizes[1024],
+        [out] int value_sizes[1024],
+        [out] char key[32768],
+        [out] char value[102400],
+        [out] int length[1],
+        int way);
+    void ocall_flush(
+        [in] int key_sizes[1024],
+        [in] int value_sizes[1024],
+        [in] char key[32768],
+        [in] char value[102400],
+        int length);
+    int ocall_read(uint64_t offset, 
+                   size_t size, 
+                   [out] int length[1],
+                   int fileIdx,
+                   [out] char space[100]);
+    int ocall_read_nospace(uint64_t offset, 
+                   size_t size, 
+                   [out] int length[1],
+                   int fileIdx,
+                   int isIndex);
+    int ocall_file_flush();
+    int ocall_append([in] char space[100], size_t size);
+    int ocall_append_nospace(int block_type, size_t size);
+*/
+    void ocall_1c_reload(
+        int fileIdx);   
+    void ocall_1c_flush();
+     void ocall_eextrac_nextKey(
+        [out] int key_size[1],
+        [out] int value_size[1],
+        [out] char key[32],
+        [out] char value[100],
+        [out] int valid[1],        
+        int fileIdx);
+    void ocall_eextrac_flush(
+        int key_size,
+        int value_size,
+        [in] char key[32],
+        [in] char value[100]
+    );
+ };
+
+};
