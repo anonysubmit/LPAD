@@ -8,6 +8,11 @@ https://github.com/01org/linux-sgx/
 How to build and run
 ===
 
+To enable LPAD protocol, edit the following line in the Makefile
+
+```
+LSM_VERIFY ?= 1
+```
 
 make
 
