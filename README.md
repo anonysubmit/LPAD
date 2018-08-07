@@ -4,7 +4,7 @@ We test this software on a MSI laptop equipped with SGX CPU, the CPU model is In
 
 https://github.com/01org/linux-sgx/
 
-![alt text](https://github.com/anonysubmit/LPAD/blob/master/env.jpg "Test Environment")
+![](https://github.com/anonysubmit/LPAD/blob/master/env.png "Test Environment")
 
 How to build and run
 ===
