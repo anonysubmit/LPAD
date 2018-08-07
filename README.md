@@ -15,6 +15,16 @@ To enable LPAD protocol, edit the following line in the Makefile
 LSM_VERIFY ?= 1
 ```
 
-make
+To build the project, just run
 
-./app
+```
+make
+```
+
+Running db_bench for LPAD is the same as running original db_bench, for example, the below command runs sequential write with one million records.
+
+```  
+./app --benchmarks=fillseq --num=1000000
+```
+
+![](https://github.com/anonysubmit/LPAD/blob/master/run.png "Running a workload")
